@@ -1,16 +1,17 @@
 import {
   FETCH_USERS_REQUEST,
   FETCH_USERS_SUCCESS,
-  FETCH_USERS_FAILURE
+  FETCH_USERS_FAILURE,
+  FETCH_POSTS_REQUEST,
+  FETCH_POSTS_SUCCESS,
+  FETCH_POSTS_FAILURE
 } from '../actions/actions';
 
 const initialState = {
   fetchingAllUsers: false,
   allUsers: [],
   fetchingAllPosts: false,
-  allPosts: [],
-  fetchingUserPosts: false,
-  userPosts: []
+  allPosts: []
 };
 
 export default (state = initialState, action) => {
@@ -28,6 +29,22 @@ export default (state = initialState, action) => {
       return {
         ...state,
         fetchingAllUsers: false,
+        errorStatusCode: action.payload
+      };
+
+    case FETCH_POSTS_REQUEST:
+      return { ...state, fetchingAllPosts: true, errorStatusCode: null };
+    case FETCH_POSTS_SUCCESS:
+      return {
+        ...state,
+        fetchingAllPosts: false,
+        allPosts: action.payload,
+        errorStatusCode: null
+      };
+    case FETCH_POSTS_FAILURE:
+      return {
+        ...state,
+        fetchingAllPosts: false,
         errorStatusCode: action.payload
       };
 

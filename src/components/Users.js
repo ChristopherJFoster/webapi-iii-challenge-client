@@ -3,11 +3,10 @@ import { connect } from 'react-redux';
 
 import { fetchAllUsers } from '../actions/actions';
 import User from './User';
+import Posts from './Posts';
 
 const Users = ({ allUsers, fetchAllUsers }) => {
   useEffect(() => {
-    console.log('useEffect!');
-    console.log(allUsers);
     fetchAllUsers();
   }, []);
 
@@ -17,6 +16,7 @@ const Users = ({ allUsers, fetchAllUsers }) => {
       {allUsers.map(user => (
         <User key={user.id} user={user} />
       ))}
+      <Posts />
     </div>
   );
 };
