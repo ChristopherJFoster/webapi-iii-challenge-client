@@ -4,10 +4,12 @@ import { connect } from 'react-redux';
 import { fetchAllUsers } from '../actions/actions';
 import User from './User';
 
-const Users = ({ allUsers }) => {
+const Users = ({ allUsers, fetchAllUsers }) => {
   useEffect(() => {
+    console.log('useEffect!');
+    console.log(allUsers);
     fetchAllUsers();
-  }, [allUsers]);
+  }, []);
 
   return (
     <div className='all-users'>
